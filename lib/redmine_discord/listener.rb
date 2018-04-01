@@ -1,5 +1,5 @@
 require_relative 'embed_objects/issue_embeds'
-require_relative 'embed_objects/wiki_embeds'
+# require_relative 'embed_objects/wiki_embeds'
 require_relative 'dispatcher'
 
 module RedmineDiscord
@@ -34,17 +34,17 @@ module RedmineDiscord
       @dispatcher.dispatch embed_object, project
     end
 
-    def controller_wiki_edit_after_save(context={})
-      wiki_page = context[:page]
-      project = wiki_page.project
+    # def controller_wiki_edit_after_save(context={})
+    #   wiki_page = context[:page]
+    #   project = wiki_page.project
 
-      embed_object = if wiki_page.content.version == 1
-        WikiNewEmbed.new context
-      else
-        WikiEditEmbed.new context
-      end
+    #   embed_object = if wiki_page.content.version == 1
+    #     WikiNewEmbed.new context
+    #   else
+    #     WikiEditEmbed.new context
+    #   end
 
-      @dispatcher.dispatch embed_object, project
-    end
+    #   @dispatcher.dispatch embed_object, project
+    # end
   end
 end
